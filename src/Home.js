@@ -3,28 +3,21 @@ import BlogList from './BlogList';
 const Home = () => {
 
 	// eslint-disable-next-line no-unused-vars
-	const [blogs, setBlogs] = useState([
-		{ title: 'Wind Hashira', body: 'lorem ipsum...', author: 'Shinazugawa', id: 1 },
-    	{ title: 'Flame Hashira', body: 'lorem ipsum...', author: 'Rengoku', id: 2 },
-    	{ title: 'Water Hashira', body: 'lorem ipsum...', author: 'Tomioka', id: 3 }
-	]);
-
-	const handleDelete = (id) =>{
-		const newBlogs = blogs.filter((item) => item.id !== id)
-		setBlogs(newBlogs);
-	}
-
-	const [name, setName] = useState("Kocho");
+	const [blogs, setBlogs] = useState(null);
 
 	useEffect(()=>{
-		console.log("use effect ran");
-		console.log(name);
-	},[name]);
+		fetch('http://localhost:5000/blogs')
+			.then(res => {
+				return res.json();
+			})
+			.then(data => {
+				setBlogs(data);
+			})
+	},[]);
 
 	return(
 		<div className="home">
-			<BlogList blogs={blogs} title="All Blogs" handleDelete={handleDelete}/>
-			<button onClick={() => setName('Kanaho')}>Change</button>
+			{blogs && <BlogList blogs={blogs} title="All Blogs"/>}
 		</div>
 	);
 }
