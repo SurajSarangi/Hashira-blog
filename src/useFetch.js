@@ -6,15 +6,18 @@ const useFetch = (url) => {
     const [isPending, setIsPending] = useState(true);
     const [error, setError] = useState(null);
 
+    const getfetch = async(url) =>{
+        const res = await fetch(url);
+        if(!res.ok){
+            throw Error('Could not fetch data from source');
+        }
+        const val = await res.json()
+        return val;
+    };
+
     useEffect(() => {
         setTimeout(() => {
-            fetch(url)
-                .then(res => {
-                    if (!res.ok) {
-                        throw Error('Could not fetch data from source');
-                    }
-                    return res.json();
-                })
+            getfetch(url)
                 .then(data => {
                     setIsPending(false);
                     setData(data);
