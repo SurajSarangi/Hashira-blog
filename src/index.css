@@ -113,3 +113,10 @@ span{
   border-radius: 8px;
   cursor: pointer;
 }
+
+/* 404 page */
+.not-found{
+  text-align: center;
+  line-height: 1cm;
+  margin-top: 50px;
+}
