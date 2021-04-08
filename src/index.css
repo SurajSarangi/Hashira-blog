@@ -4,7 +4,8 @@
 * {
   margin: 0;
   font-family: "Quicksand";
-  color: #333;
+  color: #DDD;
+  background-color: #333;
 }
 /* navbar styles */
 .navbar {
@@ -49,7 +50,7 @@
   border-bottom: 1px solid #fafafa;
 }
 span{
-  color:darkcyan;
+  color: #00DDDD;
   font-weight: bold;
 }
 .blog-preview:hover {
@@ -80,6 +81,11 @@ span{
   padding: 8px;
   border-radius: 8px;
   cursor: pointer;
+}
+#can{
+  height: 25px;
+  width: 25px;
+  background-color: #f1356d;
 }
 
 /* create new blog form */
