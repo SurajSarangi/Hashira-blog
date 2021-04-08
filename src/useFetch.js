@@ -18,22 +18,20 @@ const useFetch = (url) => {
     useEffect(() => {
         const abortCont = new AbortController();
 
-        setTimeout(() => {
-            getfetch(url, abortCont)
-                .then(data => {
+        getfetch(url, abortCont)
+            .then(data => {
+                setIsPending(false);
+                setData(data);
+                setError(null);
+            })
+            .catch(err => {
+                if (err.name === 'AbortError'){
+                    console.log('fetch aborted');
+                } else {
                     setIsPending(false);
-                    setData(data);
-                    setError(null);
-                })
-                .catch(err => {
-                    if (err.name === 'AbortError'){
-                        console.log('fetch aborted');
-                    } else {
-                        setIsPending(false);
-                        setError(err.message);
-                    }
-                })
-        }, 200);
+                    setError(err.message);
+                }
+            })
 
         return ()=> abortCont.abort();
 

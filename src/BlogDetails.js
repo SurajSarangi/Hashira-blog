@@ -4,11 +4,11 @@ import useFetch from "./useFetch";
 const BlogDetails = () => {
 
     const { id } = useParams();
-    const { data : blog, isPending, error } = useFetch(`http://localhost:5000/blogs/${id}`);
+    const { data : blog, isPending, error } = useFetch(`https://fakejson-server.herokuapp.com/blogs/${id}`);
     const history = useHistory();
 
     const handleDelete = () => {
-        fetch(`http://localhost:5000/blogs/${id}`, {
+        fetch(`https://fakejson-server.herokuapp.com/blogs/${id}`, {
             method: 'DELETE'
         }).then(()=>{
             history.push('/');
@@ -24,7 +24,9 @@ const BlogDetails = () => {
                     <h2>{blog.title}</h2>
                     <p>Written by <span> {blog.author} </span></p>
                     <div>{blog.body}</div>
-                    <button onClick={handleDelete}>Delete</button>
+                    <button onClick={handleDelete}>
+                        <img src="/trashcan.svg" alt="" id="can" />
+                    </button>
                 </article>
             )}
         </div>

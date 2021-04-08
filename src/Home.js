@@ -4,7 +4,7 @@ import useFetch from "./useFetch";
 
 const Home = () => {
 
-	const { data: blogs, isPending, error } = useFetch('http://localhost:5000/blogs');
+	const { data: blogs, isPending, error } = useFetch('https://fakejson-server.herokuapp.com/blogs');
 
 	return(
 		<div className="home">
